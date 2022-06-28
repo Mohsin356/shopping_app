@@ -23,7 +23,7 @@ class ProductItem extends StatelessWidget {
             child:  GestureDetector(
               child: Image.network(imageUrl!,fit: BoxFit.cover,),
               onTap: (){
-                Get.to(const ProductDetail(),arguments: [title,imageUrl]);
+                Get.to(ProductDetail(),arguments:id);
               },
             )
         ),

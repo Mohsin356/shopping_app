@@ -1,6 +1,5 @@
 
 
-import 'package:get/get.dart';
 class ProductModel{
   final String? id;
   final String? title;

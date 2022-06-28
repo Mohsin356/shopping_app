@@ -11,8 +11,16 @@ class ProductOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar:   const AppBarWidget(titleTxt: 'Shop',appBarBgClr: AppColors.appBarBgClr,
-        titleTxtClr:AppColors.appBarTxtClr,implyLeading: false,),
+      appBar: AppBarWidget(titleTxt: 'Shop',titleSize: 26,
+        appBarBgClr: AppColors.appBarBgClr,
+        titleTxtClr:AppColors.appBarTxtClr,
+        implyLeading: false,
+        leadingIcon: GestureDetector(
+        onTap: () { },
+          child: const Icon(
+          Icons.menu,
+          ),
+      ),),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.appBgClr,
       body: SafeArea(
@@ -37,7 +45,7 @@ class ProductOverview extends StatelessWidget {
                   const SizedBox(height: 15,),
                    const Padding(
                      padding: EdgeInsets.only(left: 8.0),
-                     child: Text("Products",style: TextStyle(color: AppColors.txtClr,fontSize: 27,fontWeight: FontWeight.w900,)),
+                     child: Text("Products",style: TextStyle(color: AppColors.txtClr,fontSize: 27,)),
                    ),
                   const SizedBox(height: 15,),
                   const ProductGrid(),

@@ -6,18 +6,22 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   final String? titleTxt;
   final Color? titleTxtClr;
   final bool? implyLeading;
-  const AppBarWidget({Key? key,this.appBarBgClr,this.titleTxt,this.titleTxtClr,this.implyLeading}) : super(key: key);
+  final double? titleSize;
+  final GestureDetector? leadingIcon;
+  const AppBarWidget({Key? key,this.appBarBgClr,this.titleTxt,this.titleTxtClr,this.implyLeading,this.titleSize,this.leadingIcon,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0.0,
+      titleSpacing: 0,
+      leading: leadingIcon,
       iconTheme: const IconThemeData(
-        color: AppColors.appBarIconClr, //change your color here
+        color: AppColors.appBarIconClr,
       ),
       backgroundColor: appBarBgClr,
       automaticallyImplyLeading: implyLeading!,
-      title: Text(titleTxt!,style: TextStyle(fontSize:24,fontWeight: FontWeight.w900,color:titleTxtClr),),
+      title: Text(titleTxt!,style: TextStyle(fontSize:titleSize,fontWeight: FontWeight.w600,color:titleTxtClr),),
     );
   }
   @override

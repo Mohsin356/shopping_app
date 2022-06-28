@@ -20,7 +20,9 @@ class ProductOverview extends StatelessWidget {
           child: const Icon(
           Icons.menu,
           ),
-      ),),
+      ),
+
+      ),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.appBgClr,
       body: SafeArea(

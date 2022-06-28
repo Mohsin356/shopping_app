@@ -16,6 +16,12 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       elevation: 0.0,
       titleSpacing: 0,
       leading: leadingIcon,
+      actions: [
+         IconButton(
+          icon: const Icon(Icons.shopping_cart),
+          onPressed: (){},
+        ),
+      ],
       iconTheme: const IconThemeData(
         color: AppColors.appBarIconClr,
       ),

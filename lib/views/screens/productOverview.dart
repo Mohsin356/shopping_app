@@ -14,7 +14,6 @@ class ProductOverview extends StatelessWidget {
       appBar: AppBarWidget(titleTxt: 'Shop',titleSize: 26,
         appBarBgClr: AppColors.appBarBgClr,
         titleTxtClr:AppColors.appBarTxtClr,
-        implyLeading: false,
         leadingIcon: GestureDetector(
         onTap: () { },
           child: const Icon(

@@ -27,7 +27,7 @@ class ProductItem extends StatelessWidget {
                   tag: id!,
                   child: Image.network(imageUrl!,fit: BoxFit.cover,)),
               onTap: (){
-                Get.to(ProductDetail(),arguments:id);
+                Get.to(()=>ProductDetail(),arguments:id);
               },
             )
         ),

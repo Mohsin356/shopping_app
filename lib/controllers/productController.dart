@@ -3,12 +3,13 @@ import 'package:get/get.dart';
 import 'package:shopping_app/models/productModel.dart';
 
 class ProductController extends GetxController{
+  var isChecked=false.obs;
    final amountOfItem=0.obs;
   final List<ProductModel> _items =[
     ProductModel(
       id: 'p1',
       title: 'Shirt',
-      desc: 'The “Crew Neck” t-shirt neckline, and the most common style of t-shirt for both men and women alike.',
+      desc: 'Made of high quality breathable cotton, You boys not only look awesome in this t-shirts, they will cool and comfortable wearing it.A perfect gift for MaMa & MaMas Boy.',
       price: 29.99,
       imgUrl:
       'https://media.istockphoto.com/photos/blank-black-tshirt-front-with-clipping-path-picture-id483960103?b=1&k=20&m=483960103&s=170667a&w=0&h=hNKNseCmaThTsh4i7Q3kHETlWo5Zi7Ogw-luVozfP_M=',
@@ -16,7 +17,7 @@ class ProductController extends GetxController{
     ProductModel(
       id: 'p2',
       title: 'Pent',
-      desc:  'Color: Black, Waste: 28,30,32,34,38,40 available, good and export quality.',
+      desc:  'This blue hue cigarette pant with fabric detailing is chic and trendy.Style this exquisite pant with sophisticated outfits for this season. Fabric: Cambric.Color: Blue',
       price: 59.99,
       imgUrl:
       'https://media.istockphoto.com/photos/blue-chino-pants-with-brown-leather-belt-isolated-on-white-background-picture-id1149139165?k=20&m=1149139165&s=612x612&w=0&h=GZNt8WgiJ3tSbVmcAKbIUmFAzbulMTw1NJ7msG2Tyno=',
@@ -24,7 +25,7 @@ class ProductController extends GetxController{
     ProductModel(
       id: 'p3',
       title: 'Scarf',
-      desc:  'The most important consideration when choosing a womens scarf to wear around your neck or on your head, is whether it flatters your face.',
+      desc:  'The most important consideration when choose a women scarf to wear around your neck or on your head, is whether it flatters your face.',
       price: 19.99,
       imgUrl:
       'https://media.istockphoto.com/photos/red-tartan-wool-winter-scarf-picture-id523136775?k=20&m=523136775&s=612x612&w=0&h=1X7ltTFmLNZ4v__rr8ecTNtklea9oDAWrP0hC8bPPxc=',

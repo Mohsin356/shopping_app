@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/utils/colors.dart';
 import 'package:shopping_app/views/screens/productDetail.dart';
@@ -11,6 +12,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2.0;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ClipRRect(
@@ -21,7 +23,9 @@ class ProductItem extends StatelessWidget {
               backgroundColor: AppColors.gridTileFooterBg,
             ),
             child:  GestureDetector(
-              child: Image.network(imageUrl!,fit: BoxFit.cover,),
+              child: Hero(
+                  tag: id!,
+                  child: Image.network(imageUrl!,fit: BoxFit.cover,)),
               onTap: (){
                 Get.to(ProductDetail(),arguments:id);
               },

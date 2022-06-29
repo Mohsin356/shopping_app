@@ -8,5 +8,6 @@ class AppColors{
   static const txtClr= Colors.black;
   static const gridTileFooterBg = Colors.black54;
   static const gridTileTitleClr = Colors.white;
+  static const iconClr=Colors.black;
 
 }

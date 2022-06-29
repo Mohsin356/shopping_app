@@ -21,7 +21,6 @@ class ProductOverview extends StatelessWidget {
           Icons.menu,
           ),
       ),
-
       ),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.appBgClr,

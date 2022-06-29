@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shopping_app/models/productModel.dart';
 
 class ProductController extends GetxController{
+   final amountOfItem=0.obs;
   final List<ProductModel> _items =[
     ProductModel(
       id: 'p1',
@@ -18,7 +19,7 @@ class ProductController extends GetxController{
       desc:  'Color: Black, Waste: 28,30,32,34,38,40 available, good and export quality.',
       price: 59.99,
       imgUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+      'https://media.istockphoto.com/photos/blue-chino-pants-with-brown-leather-belt-isolated-on-white-background-picture-id1149139165?k=20&m=1149139165&s=612x612&w=0&h=GZNt8WgiJ3tSbVmcAKbIUmFAzbulMTw1NJ7msG2Tyno=',
     ),
     ProductModel(
       id: 'p3',
@@ -40,8 +41,17 @@ class ProductController extends GetxController{
   List<ProductModel> get items{
     return [..._items];
   }
+
   findItemById(String id){
     return _items.firstWhere((element) => element.id==id);
+  }
+  increaseCount(){
+    amountOfItem.value++;
+  }
+  decreaseCount(){
+    if(amountOfItem.value!=0){
+      amountOfItem.value--;
+    }
   }
 
 }

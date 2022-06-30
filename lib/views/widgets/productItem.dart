@@ -19,7 +19,7 @@ class ProductItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: GridTile(
             footer: GridTileBar(
-              title: Center(child: Text(title!,style: const TextStyle(fontSize: 16,color: AppColors.gridTileTitleClr),)),
+              title: Center(child: Text(title!,style: const TextStyle(fontSize: 16,color: AppColors.gridTileTitleClr,fontWeight: FontWeight.bold),)),
               backgroundColor: AppColors.gridTileFooterBg,
             ),
             child:  GestureDetector(

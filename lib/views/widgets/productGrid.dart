@@ -12,22 +12,32 @@ class ProductGrid extends StatelessWidget {
     final productListItem=productItemController.items;
     return LayoutBuilder(builder: (context, constraints) {
       return
-        GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: constraints.maxWidth > 700 ? 3 : 2,
-            ),
-            itemCount: productListItem.length,
-            itemBuilder: (BuildContext context, index) {
-              return
-                ProductItem(
-                  id: productListItem[index].id,
-                  imageUrl: productListItem[index].imgUrl,
-                  title: productListItem[index].title,
-                );
-            });
+        Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                blurRadius: 8,
+              ),
+            ],
+          ),
+          child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: constraints.maxWidth > 700 ? 3 : 2,
+              ),
+              itemCount: productListItem.length,
+              itemBuilder: (BuildContext context, index) {
+                return
+                  ProductItem(
+                    id: productListItem[index].id,
+                    imageUrl: productListItem[index].imgUrl,
+                    title: productListItem[index].title,
+                  );
+              }),
+        );
     });
   }
 }

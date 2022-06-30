@@ -7,7 +7,8 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   final Color? titleTxtClr;
   final double? titleSize;
   final GestureDetector? leadingIcon;
-  const AppBarWidget({Key? key,this.appBarBgClr,this.titleTxt,this.titleTxtClr,this.titleSize,this.leadingIcon,}) : super(key: key);
+  final VoidCallback? iconFunction;
+  const AppBarWidget({Key? key,this.appBarBgClr,this.titleTxt,this.titleTxtClr,this.titleSize,this.leadingIcon,this.iconFunction}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       actions: [
          IconButton(
           icon: const Icon(Icons.shopping_cart),
-          onPressed: (){},
+          onPressed: iconFunction,
         ),
       ],
       iconTheme: const IconThemeData(

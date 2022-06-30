@@ -6,9 +6,8 @@ class ProductModel{
   final String? desc;
   final double? price;
   final String? imgUrl;
-  bool? isFav;
 
-  ProductModel({ required this.id, this.title, this.desc, this.price, this.imgUrl,this.isFav});
+  ProductModel({ required this.id, this.title, this.desc, this.price, this.imgUrl,});
 
 }
 

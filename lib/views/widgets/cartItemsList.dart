@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/cartController.dart';
 import 'package:shopping_app/utils/colors.dart';
 
-class TransactionList extends StatelessWidget {
-  TransactionList({Key? key,}) : super(key: key);
+class CartItemList extends StatelessWidget {
+  CartItemList({Key? key,}) : super(key: key);
   final cartItemController = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
@@ -24,20 +24,13 @@ class TransactionList extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) => const Divider(),
             shrinkWrap: true,
             physics: const ScrollPhysics(),
-            // scrollDirection: Axis.vertical,
+            scrollDirection: Axis.vertical,
             itemCount: cartItemController.cartItemList.length,
             itemBuilder: (context,index){
               return ListTile(
-                leading: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Name"),
-                    const SizedBox(height: 8,),
-                  ],
-                ),
-
-                trailing:
-                IconButton(onPressed: (){}, icon: const Icon(Icons.delete,)),
+                leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(cartItemController.cartItemList[index].imgUrl.toString(),fit: BoxFit.contain,)),
               );
             })
       ],

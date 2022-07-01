@@ -75,7 +75,10 @@ class ProductDetail extends StatelessWidget {
                 Text(loadedProduct.desc,style: const TextStyle(color: AppColors.txtClr,
                   fontSize: 15,)),
                 const SizedBox(height: 15,),
-                ButtonWidget(function: (){},btnTxt: "Add To Cart",btnClr: AppColors.btnClr,btnTxtClr: AppColors.btnTxtClr,)
+                ButtonWidget(function: (){
+                  cartController.addToCart(loadedProduct);
+                  print('${loadedProduct.price}');
+                },btnTxt: "Add To Cart",btnClr: AppColors.btnClr,btnTxtClr: AppColors.btnTxtClr,)
               ],
             ),
           ),

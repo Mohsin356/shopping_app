@@ -17,7 +17,7 @@ class CartBottomSheet extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children:  [
                     const HeadingText(txt: "My Cart",),
-                    TransactionList(),
+                    CartItemList(),
               ],
             ),
           )

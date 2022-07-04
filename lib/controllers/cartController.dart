@@ -1,25 +1,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/models/cartItemModel.dart';
 import 'package:shopping_app/views/widgets/myCart.dart';
 
-import '../models/productModel.dart';
 
 class CartController extends GetxController{
-  final _cartListItems=<ProductModel>[].obs;
+  final _cartItems=<CartItemModel>[].obs;
 
-  List<ProductModel> get cartItemList{
-    return [..._cartListItems];
+  List<CartItemModel> get cartItems{
+    return [..._cartItems];
   }
-  void  set(List<ProductModel> cartItems){
-    cartItems=cartItems;
+  double get totalPrice=> _cartItems.fold(0, (sum, items) => sum + items.price!);
+  void addItems(String id, String title, double price,int quantity,){
+    final itemExists=_cartItems.where((element) => element.id ==id);
+    if(itemExists.isNotEmpty){
+      print("added........");
+    }
+    else {
+      _cartItems.add(CartItemModel(id: id,title: title,price: price*quantity,quantity: quantity, ));
+    }
+  }
 
-  }
-  int get itemsCount=> _cartListItems.length;
-  double get totalPrice=> _cartListItems.fold(0, (sum, item) => sum + item.price!);
-  addToCart(ProductModel product){
-    _cartListItems.add(product);
-  }
   myCart(){
     showModalBottomSheet(context: Get.context!,
         shape: const RoundedRectangleBorder( // <-- SEE HERE

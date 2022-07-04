@@ -17,7 +17,7 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var data = Get.arguments;
+    String data = Get.arguments;
      var loadedProduct=productController.findItemById(data);
     return Scaffold(
       appBar:  AppBarWidget(appBarBgClr: AppColors.appBarBgClr,titleTxt: loadedProduct.title,
@@ -74,11 +74,13 @@ class ProductDetail extends StatelessWidget {
                  const SizedBox(height: 10,),
                 Text(loadedProduct.desc,style: const TextStyle(color: AppColors.txtClr,
                   fontSize: 15,)),
-                const SizedBox(height: 15,),
+                const SizedBox(height: 20,),
+                Obx(() => productController.amountOfItem.value==0 ?
+                const ButtonWidget(function: null,btnTxt: "Add To Cart",):
                 ButtonWidget(function: (){
-                  cartController.addToCart(loadedProduct);
-                  print('${loadedProduct.price}');
-                },btnTxt: "Add To Cart",btnClr: AppColors.btnClr,btnTxtClr: AppColors.btnTxtClr,)
+                  cartController.addItems(loadedProduct.id,
+                      loadedProduct.title, loadedProduct.price, productController.amountOfItem.value);
+                },btnTxt: "Add To Cart",btnClr: AppColors.btnClr,btnTxtClr: AppColors.btnTxtClr,))
               ],
             ),
           ),

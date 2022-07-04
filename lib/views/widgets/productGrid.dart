@@ -32,7 +32,7 @@ class ProductGrid extends StatelessWidget {
               itemBuilder: (BuildContext context, index) {
                 return
                   ProductItem(
-                    id: productListItem[index].id,
+                    id: productListItem[index].id!,
                     imageUrl: productListItem[index].imgUrl,
                     title: productListItem[index].title,
                   );

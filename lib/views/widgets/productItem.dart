@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:shopping_app/utils/colors.dart';
 import 'package:shopping_app/views/screens/productDetail.dart';
 class ProductItem extends StatelessWidget {
-  final String? id;
+  final String id;
   final String? title;
   final String? imageUrl;
-  const ProductItem({Key? key, this.id, this.title, this.imageUrl}) : super(key: key);
+  const ProductItem({Key? key, required this.id, this.title, this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ProductItem extends StatelessWidget {
             ),
             child:  GestureDetector(
               child: Hero(
-                  tag: id!,
+                  tag: id,
                   child: Image.network(imageUrl!,fit: BoxFit.cover,)),
               onTap: (){
                 Get.to(()=>ProductDetail(),arguments:id);

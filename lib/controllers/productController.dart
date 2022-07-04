@@ -43,11 +43,12 @@ class ProductController extends GetxController{
     return [..._items];
   }
 
-  findItemById(String id){
+  findItemById(String? id){
     return _items.firstWhere((element) => element.id==id);
   }
   increaseCount(){
     amountOfItem.value++;
+
   }
   decreaseCount(){
     if(amountOfItem.value!=0){

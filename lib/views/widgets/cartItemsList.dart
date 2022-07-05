@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/cartController.dart';
 import 'package:shopping_app/utils/colors.dart';
 import 'package:shopping_app/views/widgets/buttonWidget.dart';
+import 'package:shopping_app/views/widgets/quantityCountWidget.dart';
 
 class CartItemList extends StatelessWidget {
   CartItemList({Key? key,}) : super(key: key);
@@ -20,7 +21,7 @@ class CartItemList extends StatelessWidget {
       ],
     )
         :Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 5),
+          padding: const EdgeInsets.symmetric(vertical: 10.0,),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -33,14 +34,19 @@ class CartItemList extends StatelessWidget {
               itemBuilder: (context,index){
                 return ListTile(
                   leading: Text("${cartItemController.cartItems[index].title}",style: const TextStyle(fontSize: 18),),
-                  title: Center(child: Text("Rs ${cartItemController.cartItems[index].price}")),
-                  trailing: Text("Quantity: ${cartItemController.cartItems[index].quantity}"),
+                  title:  QuantityCount(txt: "${cartItemController.amountOfItem.value}",
+                    decCount: cartItemController.decreaseCount,
+                    increaseCount: cartItemController.increaseCount,),
+                  trailing: IconButton(onPressed: (){
+                    cartItemController.removeItem(cartItemController.cartItems[index]);
+                  },icon: const Icon(Icons.delete,color: AppColors.iconClr,),)
                 );
               }),
           const SizedBox(height: 15,),
           Text("Total: ${cartItemController.totalPrice.toStringAsFixed(2)}",style: const TextStyle(fontSize: 20),),
           const SizedBox(height: 15,),
-          ButtonWidget(btnTxt: "Proceed To Payment",btnTxtClr: AppColors.btnTxtClr,btnClr: AppColors.btnClr,function: (){},),
+          ButtonWidget(btnTxt: "Proceed To Payment",btnTxtClr: AppColors.btnTxtClr,btnClr: AppColors.btnClr,function: (){
+          },),
       ],
     ),
         )

@@ -7,19 +7,18 @@ import 'package:shopping_app/views/widgets/myCart.dart';
 
 class CartController extends GetxController{
   final _cartItems=<CartItemModel>[].obs;
-
+  final amountOfItem=1.obs;
   List<CartItemModel> get cartItems{
     return [..._cartItems];
   }
-  double get totalPrice=> _cartItems.fold(0, (sum, items) => sum + items.price!);
-  void addItems(String id, String title, double price,int quantity,){
+   get itemsCount=>_cartItems.length.obs;
+  double get totalPrice=> _cartItems.fold(0, (sum, items) => sum + items.price!*amountOfItem.value);
+  void addItems(String? id, String? title, double? price,int? quantity,){
     final itemExists=_cartItems.where((element) => element.id ==id);
-    if(itemExists.isNotEmpty){
-      print("added........");
+    if(itemExists.isEmpty){
+      _cartItems.add(CartItemModel(id: id,title: title,price: price! *amountOfItem.value,quantity: amountOfItem.value, ));
     }
-    else {
-      _cartItems.add(CartItemModel(id: id,title: title,price: price*quantity,quantity: quantity, ));
-    }
+
   }
 
   myCart(){
@@ -36,4 +35,16 @@ class CartController extends GetxController{
     );
 
   }
+  increaseCount(){
+    amountOfItem.value++;
+  }
+  decreaseCount(){
+    if(amountOfItem.value!=0){
+      amountOfItem.value--;
+    }
+  }
+   removeItem(CartItemModel items){
+     _cartItems.remove(items);
+  }
+
 }

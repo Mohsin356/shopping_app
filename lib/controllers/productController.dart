@@ -4,7 +4,7 @@ import 'package:shopping_app/models/productModel.dart';
 
 class ProductController extends GetxController{
   var isChecked=false.obs;
-   final amountOfItem=0.obs;
+
   final List<ProductModel> _items =[
     ProductModel(
       id: 'p1',
@@ -46,15 +46,7 @@ class ProductController extends GetxController{
   findItemById(String? id){
     return _items.firstWhere((element) => element.id==id);
   }
-  increaseCount(){
-    amountOfItem.value++;
 
-  }
-  decreaseCount(){
-    if(amountOfItem.value!=0){
-      amountOfItem.value--;
-    }
-  }
 
 
 }

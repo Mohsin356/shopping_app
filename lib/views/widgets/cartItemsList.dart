@@ -33,13 +33,12 @@ class CartItemList extends StatelessWidget {
               itemCount: cartItemController.cartItems.length,
               itemBuilder: (context,index){
                 return ListTile(
-                  leading: Text("${cartItemController.cartItems[index].title}",style: const TextStyle(fontSize: 18),),
-                  title:  QuantityCount(txt: "${cartItemController.amountOfItem.value}",
-                    decCount: cartItemController.decreaseCount,
-                    increaseCount: cartItemController.increaseCount,),
-                  trailing: IconButton(onPressed: (){
-                    cartItemController.removeItem(cartItemController.cartItems[index]);
-                  },icon: const Icon(Icons.delete,color: AppColors.iconClr,),)
+                    leading: Text("${cartItemController.cartItems[index].title}",style: const TextStyle(fontSize: 18),),
+                    title:  QuantityCount(txt: cartItemController.cartItems[index].quantity!,increaseCount: cartItemController.increaseCount,
+                    decCount: cartItemController.decreaseCount,),
+                    trailing: IconButton(onPressed: (){
+                      cartItemController.removeItem(cartItemController.cartItems[index]);
+                    },icon: const Icon(Icons.delete,color: AppColors.iconClr,),)
                 );
               }),
           const SizedBox(height: 15,),

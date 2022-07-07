@@ -4,7 +4,7 @@ import 'package:shopping_app/utils/colors.dart';
 class QuantityCount extends StatelessWidget {
   final VoidCallback? decCount;
   final VoidCallback? increaseCount;
-  final String? txt;
+  final int? txt;
   const QuantityCount({Key? key,this.txt,this.decCount,this.increaseCount}) : super(key: key);
 
   @override
@@ -17,9 +17,8 @@ class QuantityCount extends StatelessWidget {
       icon:  const Icon(Icons.remove,color: AppColors.iconClr),),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 3.0),
-          decoration: myBoxDecoration(), //             <--- BoxDecoration here
-          child: Text(
-            txt!,),
+          decoration: myBoxDecoration(),
+          child: Text('$txt'),
         ),
         IconButton(
           onPressed: increaseCount,
@@ -30,7 +29,7 @@ class QuantityCount extends StatelessWidget {
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
       border: Border.all(
-        color: AppColors.boxBorderClr, //                   <--- border color
+        color: AppColors.boxBorderClr,
       ),
     );
   }

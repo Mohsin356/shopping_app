@@ -6,8 +6,10 @@ import 'package:shopping_app/views/widgets/myCart.dart';
 
 
 class CartController extends GetxController{
+
+
   final _cartItems=<CartItemModel>[].obs;
-  final amountOfItem=1.obs;
+  var amountOfItem=1.obs;
   List<CartItemModel> get cartItems{
     return [..._cartItems];
   }
@@ -36,11 +38,12 @@ class CartController extends GetxController{
 
   }
   increaseCount(){
-    amountOfItem.value++;
+   amountOfItem.value++;
   }
   decreaseCount(){
     if(amountOfItem.value!=0){
-      amountOfItem.value--;
+      amountOfItem--;
+      print(amountOfItem);
     }
   }
    removeItem(CartItemModel items){

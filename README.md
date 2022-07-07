@@ -1,16 +1,21 @@
-# shopping_app
+# Shopping App
 
-A new Flutter project.
+An android app developed through flutter using GetX state management. 
+In this app, User can:
+  1. View items present in the shop. 
+  2. View the details of the item, he wants to buy. 
+  3. Add the items selected for shopping to the cart.
+  4. Open my cart anywhere in the application.
+  5. View items in the cart.
+  6. Add count for the items user wants to buy.
+  7. Remove item from the cart.
+  8. View the to total bill for the items he has added in cart.
 
-## Getting Started
+This chart feature allows its users to find out on which day expenses have been made in
+a large amount.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Demo of Project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/101866366/177814329-dd70829a-8527-40c5-96eb-8ede0f8622a6.gif)

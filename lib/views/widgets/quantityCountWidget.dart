@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopping_app/utils/colors.dart';
+import 'package:get/get.dart';
+
 class QuantityCount extends StatelessWidget {
-  final VoidCallback? decCount;
-  final VoidCallback? increaseCount;
-  final int? txt;
-  const QuantityCount({Key? key,this.txt,this.decCount,this.increaseCount}) : super(key: key);
+  RxInt? qtyOfProduct;
+  QuantityCount({Key? key,this.qtyOfProduct,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +13,21 @@ class QuantityCount extends StatelessWidget {
       children: [
         const SizedBox(width: 30,),
       IconButton(
-      onPressed: decCount,
+      onPressed: (){
+        if(qtyOfProduct != 0){
+          qtyOfProduct = (qtyOfProduct! - 1)!;
+        }
+      },
       icon:  const Icon(Icons.remove,color: AppColors.iconClr),),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 3.0),
           decoration: myBoxDecoration(),
-          child: Text('$txt'),
+          child: Obx(() => Text('$qtyOfProduct')),
         ),
         IconButton(
-          onPressed: increaseCount,
+          onPressed:(){
+            qtyOfProduct = (qtyOfProduct! + 1)!;
+          },
           icon:  const Icon(Icons.add,color: AppColors.iconClr),),
       ],
     );

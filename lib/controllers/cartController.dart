@@ -9,18 +9,17 @@ class CartController extends GetxController{
 
 
   final _cartItems=<CartItemModel>[].obs;
-  var amountOfItem=1.obs;
   List<CartItemModel> get cartItems{
     return [..._cartItems];
   }
    get itemsCount=>_cartItems.length.obs;
-  double get totalPrice=> _cartItems.fold(0, (sum, items) => sum + items.price!*amountOfItem.value);
-  void addItems(String? id, String? title, double? price,int? quantity,){
+  double get totalPrice=> _cartItems.fold(0, (sum, items) => sum + items.price!*items.quantity!.value);
+  void addItems(String? id, String? title, double? price,RxInt? itemQuantity){
     final itemExists=_cartItems.where((element) => element.id ==id);
-    if(itemExists.isEmpty){
-      _cartItems.add(CartItemModel(id: id,title: title,price: price! *amountOfItem.value,quantity: amountOfItem.value, ));
+    if(itemExists.isEmpty) {
+      _cartItems.add(CartItemModel(
+          id: id, title: title, price: price!, quantity: itemQuantity));
     }
-
   }
 
   myCart(){
@@ -36,15 +35,6 @@ class CartController extends GetxController{
         },
     );
 
-  }
-  increaseCount(){
-   amountOfItem.value++;
-  }
-  decreaseCount(){
-    if(amountOfItem.value!=0){
-      amountOfItem--;
-      print(amountOfItem);
-    }
   }
    removeItem(CartItemModel items){
      _cartItems.remove(items);

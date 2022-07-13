@@ -11,7 +11,7 @@ class CartItemList extends StatelessWidget {
   final cartItemController = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
-    return Obx(() => cartItemController.cartItems.isEmpty ?
+    return cartItemController.cartItems.isEmpty ?
     Column(
       children: const[
         SizedBox(height: 40,),
@@ -20,11 +20,11 @@ class CartItemList extends StatelessWidget {
         )
       ],
     )
-        :Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0,),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
+        :Obx(() => Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0,),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
           ListView.separated(
               separatorBuilder: (BuildContext context, int index) => const Divider(),
               shrinkWrap: true,
@@ -34,8 +34,7 @@ class CartItemList extends StatelessWidget {
               itemBuilder: (context,index){
                 return ListTile(
                     leading: Text("${cartItemController.cartItems[index].title}",style: const TextStyle(fontSize: 18),),
-                    title:  QuantityCount(txt: cartItemController.cartItems[index].quantity!,increaseCount: cartItemController.increaseCount,
-                    decCount: cartItemController.decreaseCount,),
+                    title:  QuantityCount(qtyOfProduct: cartItemController.cartItems[index].quantity!,),
                     trailing: IconButton(onPressed: (){
                       cartItemController.removeItem(cartItemController.cartItems[index]);
                     },icon: const Icon(Icons.delete,color: AppColors.iconClr,),)
@@ -46,9 +45,9 @@ class CartItemList extends StatelessWidget {
           const SizedBox(height: 15,),
           ButtonWidget(btnTxt: "Proceed To Payment",btnTxtClr: AppColors.btnTxtClr,btnClr: AppColors.btnClr,function: (){
           },),
-      ],
-    ),
-        )
-    );
+        ],
+      ),
+
+    ));
   }
 }

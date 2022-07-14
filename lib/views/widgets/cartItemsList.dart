@@ -2,16 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/controllers/cartController.dart';
+import 'package:shopping_app/controllers/orderController.dart';
 import 'package:shopping_app/utils/colors.dart';
+import 'package:shopping_app/views/screens/ordersScreen.dart';
 import 'package:shopping_app/views/widgets/buttonWidget.dart';
 import 'package:shopping_app/views/widgets/quantityCountWidget.dart';
 
 class CartItemList extends StatelessWidget {
   CartItemList({Key? key,}) : super(key: key);
   final cartItemController = Get.find<CartController>();
+  final orderController= Get.put(OrderController());
   @override
   Widget build(BuildContext context) {
-    return cartItemController.cartItems.isEmpty ?
+    return Obx(() => cartItemController.cartItems.isEmpty ?
     Column(
       children: const[
         SizedBox(height: 40,),
@@ -19,8 +22,7 @@ class CartItemList extends StatelessWidget {
           child:  Text("No Items Added Yet!",style: TextStyle(fontSize: 20,color: AppColors.hintTxtClr)),
         )
       ],
-    )
-        :Obx(() => Padding(
+    ) :Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0,),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -43,8 +45,13 @@ class CartItemList extends StatelessWidget {
           const SizedBox(height: 15,),
           Text("Total: ${cartItemController.totalPrice.toStringAsFixed(2)}",style: const TextStyle(fontSize: 20),),
           const SizedBox(height: 15,),
-          ButtonWidget(btnTxt: "Proceed To Payment",btnTxtClr: AppColors.btnTxtClr,btnClr: AppColors.btnClr,function: (){
-          },),
+          ButtonWidget(btnTxt: "Proceed To Payment",
+            btnTxtClr: AppColors.btnTxtClr,btnClr: AppColors.btnClr,
+            function: (){
+              orderController.addOrder(cartItemController.cartItems.toList(), cartItemController.totalPrice.toStringAsFixed(2));
+              cartItemController.clearItems();
+              // Get.to(OrdersScreen());
+            },),
         ],
       ),
 

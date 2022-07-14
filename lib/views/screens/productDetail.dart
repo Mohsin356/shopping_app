@@ -19,9 +19,7 @@ class ProductDetail extends StatelessWidget {
     String data = Get.arguments;
      var loadedProduct=productController.findItemById(data);
     return Scaffold(
-      appBar:  AppBarWidget(appBarBgClr: AppColors.appBarBgClr,titleTxt: loadedProduct.title,
-        titleSize: 22,titleTxtClr:AppColors.appBarTxtClr,
-        iconFunction: cartController.myCart,
+      appBar:  AppBarWidget(titleTxt: loadedProduct.title, titleSize: 22, iconFunction: cartController.myCart,
         leadingIcon: GestureDetector(
           onTap: () {
             Get.back();

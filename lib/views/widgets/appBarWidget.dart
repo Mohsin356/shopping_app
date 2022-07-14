@@ -7,13 +7,11 @@ import '../../controllers/cartController.dart';
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
   final cartController= Get.find<CartController>();
 
-  final Color? appBarBgClr;
   final String? titleTxt;
-  final Color? titleTxtClr;
   final double? titleSize;
   final GestureDetector? leadingIcon;
   final VoidCallback? iconFunction;
-   AppBarWidget({Key? key,this.appBarBgClr,this.titleTxt,this.titleTxtClr,this.titleSize,this.leadingIcon,this.iconFunction,}) : super(key: key);
+   AppBarWidget({Key? key,this.titleTxt,this.titleSize,this.leadingIcon,this.iconFunction,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +50,8 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       iconTheme: const IconThemeData(
         color: AppColors.appBarIconClr,
       ),
-      backgroundColor: appBarBgClr,
-      title: Text(titleTxt!,style: TextStyle(fontSize:titleSize,fontWeight: FontWeight.w600,color:titleTxtClr),),
+      backgroundColor: AppColors.appBarBgClr,
+      title: Text(titleTxt!,style: TextStyle(fontSize:titleSize,fontWeight: FontWeight.w600,color:AppColors.appBarTxtClr),),
     );
   }
   @override

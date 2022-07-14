@@ -5,6 +5,7 @@ import 'package:shopping_app/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/utils/assets.dart';
 import 'package:shopping_app/views/widgets/appBarWidget.dart';
+import 'package:shopping_app/views/widgets/appDrawer.dart';
 import 'package:shopping_app/views/widgets/headingText.dart';
 import 'package:shopping_app/views/widgets/productGrid.dart';
 class ProductOverview extends StatelessWidget {
@@ -13,17 +14,9 @@ class ProductOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBarWidget(titleTxt: 'Shop',titleSize: 26,
-        appBarBgClr: AppColors.appBarBgClr,
-        titleTxtClr:AppColors.appBarTxtClr,
-        iconFunction: cartController.myCart,
-        leadingIcon: GestureDetector(
-        onTap: () {},
-          child: const Icon(
-          Icons.menu,
-          ),
+      appBar: AppBarWidget(titleTxt: 'Shop',titleSize: 26, iconFunction: cartController.myCart,
       ),
-      ),
+      drawer: const AppDrawer(),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.appBgClr,
       body: SafeArea(

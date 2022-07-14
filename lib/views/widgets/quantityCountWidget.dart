@@ -14,8 +14,8 @@ class QuantityCount extends StatelessWidget {
         const SizedBox(width: 30,),
       IconButton(
       onPressed: (){
-        if(qtyOfProduct != 0){
-          qtyOfProduct = (qtyOfProduct! - 1)!;
+        if(qtyOfProduct!.value != 0){
+          qtyOfProduct = qtyOfProduct! - 1;
         }
       },
       icon:  const Icon(Icons.remove,color: AppColors.iconClr),),
@@ -26,7 +26,7 @@ class QuantityCount extends StatelessWidget {
         ),
         IconButton(
           onPressed:(){
-            qtyOfProduct = (qtyOfProduct! + 1)!;
+            qtyOfProduct = qtyOfProduct! + 1;
           },
           icon:  const Icon(Icons.add,color: AppColors.iconClr),),
       ],

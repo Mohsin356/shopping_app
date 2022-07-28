@@ -6,6 +6,7 @@ import 'package:shopping_app/utils/colors.dart';
 import 'package:shopping_app/views/widgets/appBarWidget.dart';
 import 'package:shopping_app/views/widgets/buttonWidget.dart';
 import 'package:shopping_app/views/widgets/headingText.dart';
+import 'package:shopping_app/views/widgets/quantityCountWidget.dart';
 import '../../controllers/productController.dart';
 
 
@@ -79,11 +80,20 @@ class ProductDetail extends StatelessWidget {
                  const SizedBox(height: 10,),
                 Text(loadedProduct.desc,style: const TextStyle(color: AppColors.txtClr,
                   fontSize: 15,)),
+                const SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text('Select the Amount of Item:',style: TextStyle(color: AppColors.txtClr,
+                      fontSize: 15,)),
+                    QuantityCount(qtyOfProduct: loadedProduct.quantity,),
+                  ],
+                ),
                 const SizedBox(height: 20,),
-                ButtonWidget(function: (){
-                  cartController.addItems(loadedProduct.id,loadedProduct.price,loadedProduct.title,loadedProduct.quantity,);
+                Obx(() => ButtonWidget(function: loadedProduct.quantity.value==0?null:(){
+                  cartController.addItems(loadedProduct.id,loadedProduct.price,loadedProduct.title,loadedProduct.quantity.value,);
                   cartController.update();
-                  },btnTxt: "Add To Cart",btnClr: AppColors.btnClr,btnTxtClr: AppColors.btnTxtClr,)
+                },btnTxt: "Add To Cart",btnClr: AppColors.btnClr,btnTxtClr: AppColors.btnTxtClr,))
               ],
             ),
           ),

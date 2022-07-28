@@ -38,13 +38,9 @@ class CartItemList extends StatelessWidget {
               itemBuilder: (context,index){
                 return ListTile(
                     leading: Text("${cartItemController.cartItems.values.toList()[index].title}",style: const TextStyle(fontSize: 18),),
-                    title:  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        QuantityCount(qtyOfProduct: cartItemController.cartItems.values.toList()[index].quantity,),
-                        Obx(() => Text("Rs ${(cartItemController.cartItems.values.toList()[index].quantity!*cartItemController.cartItems.values.toList()[index].price!).toStringAsFixed(2)}"),),
-
-                      ],
+                    title:  Center(
+                      child: Obx(() => Text("${cartItemController.cartItems.values.toList()[index].quantity!}"
+                          " x Rs ${(cartItemController.cartItems.values.toList()[index].quantity!*cartItemController.cartItems.values.toList()[index].price!).toStringAsFixed(2)}"),),
                     ),
                   trailing: Padding(
                     padding: const EdgeInsets.only(left: 10.0,right: 0.0),

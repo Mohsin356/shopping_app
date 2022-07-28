@@ -20,19 +20,11 @@ class CartController extends GetxController{
    double get totalPrice{
     var total=0.0;
     _cartItems.forEach((key, cartItem) {
-      total += cartItem.price* cartItem.quantity.value;
+      total += cartItem.price* cartItem.quantity;
     });
     return total;
    }
-  // double get totalPrice=> _cartItems.fold(0, (sum, items) => sum + items.price!*items.quantity!.value);
-  // void addItems(String? id, String? title, double? price,RxInt? itemQuantity){
-  //   final itemExists=_cartItems.where((element) => element.id ==id);
-  //   if(itemExists.isEmpty) {
-  //     _cartItems.add(CartItemModel(
-  //         id: id, title: title, price: price!, quantity: itemQuantity));
-  //   }
-  // }
-  void addItems(String productId,double itemPrice,String itemTitle,RxInt itemQuantity){
+  void addItems(String productId,double itemPrice,String itemTitle,int itemQuantity){
     if(_cartItems.containsKey(productId)){
       Fluttertoast.showToast(
           msg: 'Product Already Added',

@@ -7,7 +7,7 @@ class ProductModel{
   final String? desc;
   final double? price;
   final String? imgUrl;
-  RxInt? quantity=0.obs;
+  RxInt? quantity=1.obs;
 
 
   ProductModel({ required this.id, this.title, this.desc, this.price, this.imgUrl,this.quantity});

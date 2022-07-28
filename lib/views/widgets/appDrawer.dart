@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/utils/colors.dart';
 import 'package:shopping_app/views/screens/ordersScreen.dart';
 import 'package:shopping_app/views/screens/productOverview.dart';
 
@@ -13,13 +14,14 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            title: const Text('hello User'),
+            backgroundColor: Colors.black,
+            title: const Text('Hello User'),
             automaticallyImplyLeading: false,
           ),
-          const Divider(),
           ListTile(
             leading: const Icon(
-              Icons.shop),
+              Icons.shop,
+              color: AppColors.iconClr,),
               title: const Text("Shop"),
             onTap: (){
               Get.to(ProductOverview());
@@ -28,7 +30,8 @@ class AppDrawer extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(
-              Icons.payment),
+              Icons.payment,
+                color: AppColors.iconClr),
               title: const Text("Orders"),
             onTap: (){
               Get.to(OrdersScreen());

@@ -15,44 +15,44 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return Obx(() => AppBar(
       elevation: 0.0,
       titleSpacing: 0,
       leading: leadingIcon,
       actions: [
-         Stack(
-           children: [
+        Stack(
+          children: [
 
-             IconButton(
-               icon: const Icon(Icons.shopping_cart),
-               onPressed: iconFunction,
-             ),
-             Obx(() => Positioned(
-                 right: 8,
-                 top: 5,
-                 child: cartController.itemsCount==0 ? Container()
-                     :Container(
-                   height: 15,
-                   width: 15,
-                   decoration: BoxDecoration(
-                     borderRadius: BorderRadius.circular(10),
-                     color: AppColors.iconBadgeClr,
+            IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              onPressed: iconFunction,
+            ),
+            Positioned(
+                right: 8,
+                top: 5,
+                child: cartController.itemsCount.value==0 ? Container()
+                    :Container(
+                  height: 15,
+                  width: 15,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.iconBadgeClr,
 
-                   ),
-                   child: Center(child: Text('${cartController.itemsCount}',style: const TextStyle(fontSize: 12),)),
-                 )
-             ),)
+                  ),
+                  child: Center(child: Text('${cartController.itemsCount}',style: const TextStyle(fontSize: 12),)),
+                )
+            ),
 
 
-           ],
-         )
+          ],
+        )
       ],
       iconTheme: const IconThemeData(
         color: AppColors.appBarIconClr,
       ),
       backgroundColor: AppColors.appBarBgClr,
       title: Text(titleTxt!,style: TextStyle(fontSize:titleSize,fontWeight: FontWeight.w600,color:AppColors.appBarTxtClr),),
-    );
+    ));
   }
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

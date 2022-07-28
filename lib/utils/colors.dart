@@ -11,6 +11,7 @@ class AppColors{
   static const priceTxtBg = Colors.black38;
   static const hintTxtClr= Colors.grey;
   static const gridTileFooterBg = Colors.black38;
+  static const toastBg = Colors.black38;
   static const gridTileTitleClr = Colors.white;
   static const iconClr=Colors.black;
   static const checkBoxClr=Colors.black;

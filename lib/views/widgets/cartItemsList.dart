@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/cartController.dart';
 import 'package:shopping_app/controllers/orderController.dart';
 import 'package:shopping_app/utils/colors.dart';
-import 'package:shopping_app/views/screens/ordersScreen.dart';
 import 'package:shopping_app/views/widgets/buttonWidget.dart';
 import 'package:shopping_app/views/widgets/quantityCountWidget.dart';
+
+import '../screens/ordersScreen.dart';
 
 class CartItemList extends StatelessWidget {
   CartItemList({Key? key,}) : super(key: key);
@@ -22,7 +23,8 @@ class CartItemList extends StatelessWidget {
           child:  Text("No Items Added Yet!",style: TextStyle(fontSize: 20,color: AppColors.hintTxtClr)),
         )
       ],
-    ) :Padding(
+    ) :
+    Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0,),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -35,22 +37,37 @@ class CartItemList extends StatelessWidget {
               itemCount: cartItemController.cartItems.length,
               itemBuilder: (context,index){
                 return ListTile(
-                    leading: Text("${cartItemController.cartItems[index].title}",style: const TextStyle(fontSize: 18),),
-                    title:  QuantityCount(qtyOfProduct: cartItemController.cartItems[index].quantity!,),
-                    trailing: IconButton(onPressed: (){
-                      cartItemController.removeItem(cartItemController.cartItems[index]);
-                    },icon: const Icon(Icons.delete,color: AppColors.iconClr,),)
+                    leading: Text("${cartItemController.cartItems.values.toList()[index].title}",style: const TextStyle(fontSize: 18),),
+                    title:  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        QuantityCount(qtyOfProduct: cartItemController.cartItems.values.toList()[index].quantity,),
+                        Obx(() => Text("Rs ${(cartItemController.cartItems.values.toList()[index].quantity!*cartItemController.cartItems.values.toList()[index].price!).toStringAsFixed(2)}"),),
+
+                      ],
+                    ),
+                  trailing: Padding(
+                    padding: const EdgeInsets.only(left: 10.0,right: 0.0),
+                    child: IconButton(onPressed: (){
+                      cartItemController.removeItem(cartItemController.cartItems.keys.toList()[index]);
+                    },icon: const Icon(Icons.delete,color: AppColors.iconClr,),),
+                  ),
+
+
                 );
               }),
           const SizedBox(height: 15,),
-          Text("Total: ${cartItemController.totalPrice.toStringAsFixed(2)}",style: const TextStyle(fontSize: 20),),
+           Text("Total: ${cartItemController.totalPrice.toStringAsFixed(2)}",style: const TextStyle(fontSize: 20),),
           const SizedBox(height: 15,),
-          ButtonWidget(btnTxt: "Proceed To Payment",
+          ButtonWidget(btnTxt: "Place Order",
             btnTxtClr: AppColors.btnTxtClr,btnClr: AppColors.btnClr,
-            function: (){
-              orderController.addOrder(cartItemController.cartItems.toList(), cartItemController.totalPrice.toStringAsFixed(2));
+            function:
+            cartItemController.totalPrice==0.0 ?null:
+                (){
+              orderController.addOrder(cartItemController.cartItems.values.toList(), cartItemController.totalPrice.toStringAsFixed(2));
               cartItemController.clearItems();
-              // Get.to(OrdersScreen());
+              cartItemController.update();
+              Get.to(OrdersScreen());
             },),
         ],
       ),

@@ -42,6 +42,20 @@ class CartController extends GetxController{
                   price: itemPrice,
                   quantity: itemQuantity,
                   title:itemTitle ));
+      ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+          SnackBar(content: const Text("Added to Cart"),
+            duration: const Duration(seconds: 2),
+            action: SnackBarAction(
+              label: 'Undo',
+              textColor: AppColors.txtClrWhite,
+              onPressed: (){
+                _cartItems.remove(productId);
+              },
+            ),
+          )
+      );
+
     }
   }
 

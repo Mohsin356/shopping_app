@@ -10,7 +10,7 @@ import 'package:shopping_app/views/widgets/quantityCountWidget.dart';
 import '../../controllers/productController.dart';
 
 
-class ProductDetail extends StatelessWidget {
+class ProductDetail extends StatelessWidget  {
   ProductDetail({Key? key,}) : super(key: key);
    final productController=Get.find<ProductController>();
   final cartController= Get.put(CartController());

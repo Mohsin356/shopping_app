@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/cartController.dart';
 import 'package:shopping_app/controllers/orderController.dart';
 import 'package:shopping_app/utils/colors.dart';
+import 'package:shopping_app/views/widgets/DialougeWidget.dart';
 import 'package:shopping_app/views/widgets/buttonWidget.dart';
 import 'package:shopping_app/views/widgets/quantityCountWidget.dart';
 
@@ -45,7 +46,17 @@ class CartItemList extends StatelessWidget {
                   trailing: Padding(
                     padding: const EdgeInsets.only(left: 10.0,right: 0.0),
                     child: IconButton(onPressed: (){
-                      cartItemController.removeItem(cartItemController.cartItems.keys.toList()[index]);
+                      showDialog(context: context, builder: (context)=>DialougeWidget(
+                        titleTxt: "Are you Sure?",
+                        contentTxt: "Are you sure to remove ${cartItemController.cartItems.values.toList()[index].title} from cart?",
+                        confirmed: (){
+                          cartItemController.removeItem(cartItemController.cartItems.keys.toList()[index]);
+                          Navigator.pop(context);
+                        },
+                        notConfirmed: (){
+                          Navigator.pop(context);
+                        },
+                      ));
                     },icon: const Icon(Icons.delete,color: AppColors.iconClr,),),
                   ),
 

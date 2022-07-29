@@ -16,17 +16,27 @@ class DialougeWidget extends StatelessWidget {
     return AlertDialog(
       title: Text(titleTxt!), content: Text(contentTxt!,style: TextStyle(color: contextTxtClr),),
       actions: [
-        ElevatedButton(onPressed: confirmed,
-            style:ElevatedButton.styleFrom(
-              primary: AppColors.btnClr,onPrimary: AppColors.btnTxtClr,)
-            ,child: const Text('Yes')),
-        ElevatedButton(onPressed: notConfirmed,
-          style:ElevatedButton.styleFrom(
-            primary: AppColors.btnClr,onPrimary: AppColors.btnTxtClr,),
-          child: const Text('No'),
-        ),
+       SizedBox(
+         child: Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 10.0),
+           child: Row(
+             mainAxisAlignment: MainAxisAlignment.end,
+             children: [
 
+               GestureDetector(
+                 onTap: confirmed,
+                 child: const Text('Yes',style: TextStyle(color: AppColors.txtClr),),
+               ),
+               const SizedBox(width: 20,),
+               GestureDetector(
+                 onTap: notConfirmed,
+                 child: const Text('No',style: TextStyle(color: AppColors.txtClr),),
+               ),
 
+             ],
+           ),
+         ),
+       )
       ],
 
     );

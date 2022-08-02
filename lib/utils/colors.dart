@@ -8,6 +8,9 @@ class AppColors{
   static const appBgClr = Color(0xFFf9f9f9);
   static const txtClr= Colors.black;
   static const txtClrWhite= Colors.white;
+  static const lblTxtClr= Colors.black;
+  static const txtFieldFocused= Colors.black;
+  static const cursorClr= Colors.black;
   static const priceTxtBg = Colors.black38;
   static const hintTxtClr= Colors.grey;
   static const gridTileFooterBg = Colors.black38;

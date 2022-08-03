@@ -10,6 +10,8 @@ class AppColors{
   static const txtClrWhite= Colors.white;
   static const lblTxtClr= Colors.black;
   static const txtFieldFocused= Colors.black;
+  static const imgBorderFocused= Colors.black;
+  static const imgBorderUnFocused= Colors.grey;
   static const cursorClr= Colors.black;
   static const priceTxtBg = Colors.black38;
   static const hintTxtClr= Colors.grey;

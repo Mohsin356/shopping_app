@@ -50,7 +50,16 @@ class ProductController extends GetxController{
   findItemById(String? id){
     return _items.firstWhere((element) => element.id==id);
   }
-
+void addProduct(ProductModel product){
+    final newProduct=ProductModel(
+      id: DateTime.now().toString(),
+      title: product.title,
+      quantity: 0.obs,
+      desc: product.desc,
+      price: product.price,
+      imgUrl:product.imgUrl );
+    _items.add(newProduct);
+}
 
 
 }

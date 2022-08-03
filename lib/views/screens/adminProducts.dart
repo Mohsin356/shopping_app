@@ -21,27 +21,28 @@ class AdminProducts extends StatelessWidget {
           color: AppColors.appBarIconClr,
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.add,color: AppColors.iconClr,)),
+          IconButton(onPressed: (){
+              Get.to(const EditProduct());
+              }, icon: const Icon(Icons.add,color: AppColors.iconClr,)),
         ],
       ),
       drawer: const AppDrawer(),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.appBgClr,
-      body: Padding(
+      body: Obx(() => Padding(
         padding: const EdgeInsets.all(10),
         child: ListView.builder(itemCount: productController.items.length,
-        itemBuilder: (_,index)=>Column(
-          children: [
-            AdminProductItem(imgUrl: productController.items[index].imgUrl,
-              itemTitle: productController.items[index].title,
-            editFunc: (){
-              Get.to(EditProduct());
-            },),
-            const Divider(),
-          ],
+          itemBuilder: (_,index)=>Column(
+            children: [
+              AdminProductItem(
+                id: productController.items[index].id,
+                imgUrl: productController.items[index].imgUrl,
+                itemTitle: productController.items[index].title,),
+              const Divider(),
+            ],
+          ),
         ),
-      ),
-      ),
+      ),)
     );
   }
 }

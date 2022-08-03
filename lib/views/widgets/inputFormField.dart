@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/utils/colors.dart';
 
 class InputFormField extends StatelessWidget {
-  const InputFormField({Key? key, this.labelTxt, this.inputType, this.inputAction, this.focusNode, this.function,this.maxLines}) : super(key: key);
+  const InputFormField({Key? key, this.labelTxt, this.inputType, this.inputAction,
+    this.focusNode, this.function,this.maxLines,this.controller,this.functionSaveForm,this.validator})
+      : super(key: key);
   final String? labelTxt;
   final TextInputType? inputType;
   final TextInputAction? inputAction;
   final FocusNode? focusNode;
   final String? Function(String?)? function;
+  final String? Function(String?)? functionSaveForm;
+  final String? Function(String?)? validator;
   final int? maxLines;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -21,11 +26,14 @@ class InputFormField extends StatelessWidget {
             borderSide: BorderSide(color:AppColors.txtFieldFocused,)
         ),
       ),
-      textInputAction: TextInputAction.next,
-      keyboardType: TextInputType.number,
+      textInputAction: inputAction,
+      keyboardType: inputType,
       maxLines: maxLines,
       focusNode: focusNode,
       onFieldSubmitted: function,
+      controller: controller,
+      onSaved: functionSaveForm,
+      validator: validator,
     );
   }
 }

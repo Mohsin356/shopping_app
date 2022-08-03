@@ -1,13 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopping_app/utils/colors.dart';
+import 'package:get/get.dart';
+import 'package:shopping_app/views/screens/editProduct.dart';
 
 class AdminProductItem extends StatelessWidget {
-   const AdminProductItem({Key? key,this.itemTitle,this.imgUrl,this.editFunc,this.deleteFunc}) : super(key: key);
+   const AdminProductItem({Key? key,this.itemTitle,this.imgUrl,this.id}) : super(key: key);
+   final String? id;
   final String? itemTitle;
   final String? imgUrl;
-  final VoidCallback? editFunc;
-  final VoidCallback? deleteFunc;
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,10 @@ class AdminProductItem extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            IconButton(onPressed: editFunc, icon: const Icon(Icons.edit,color: AppColors.iconClr,),),
-            IconButton(onPressed: deleteFunc, icon: const Icon(Icons.delete,color: AppColors.iconClr),),
+            IconButton(onPressed:(){
+              Get.to(()=>EditProduct(),arguments:id);
+            } , icon: const Icon(Icons.edit,color: AppColors.iconClr,),),
+            IconButton(onPressed: (){}, icon: const Icon(Icons.delete,color: AppColors.iconClr),),
           ],
         ),
       )

@@ -29,7 +29,14 @@ class AdminProducts extends StatelessWidget {
       drawer: const AppDrawer(),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.appBgClr,
-      body: Obx(() => Padding(
+      body: Obx(() => productController.items.isEmpty?
+      const Padding(
+        padding: EdgeInsets.symmetric(vertical: 20),
+        child: Center(
+          child:  Text("No Products Added Yet!",style: TextStyle(fontSize: 20,color: AppColors.hintTxtClr)),
+        ),
+      )
+          :Padding(
         padding: const EdgeInsets.all(10),
         child: ListView.builder(itemCount: productController.items.length,
           itemBuilder: (_,index)=>Column(
@@ -37,7 +44,8 @@ class AdminProducts extends StatelessWidget {
               AdminProductItem(
                 id: productController.items[index].id,
                 imgUrl: productController.items[index].imgUrl,
-                itemTitle: productController.items[index].title,),
+                itemTitle: productController.items[index].title,
+                deleteProd: ()=>productController.deleteProduct(productController.items[index].id!),),
               const Divider(),
             ],
           ),

@@ -4,8 +4,8 @@ import 'package:shopping_app/utils/colors.dart';
 
 class InputFormField extends StatelessWidget {
   const InputFormField({Key? key, this.labelTxt, this.inputType, this.inputAction,
-    this.focusNode, this.function,this.maxLines,this.controller,this.functionSaveForm,this.validator})
-      : super(key: key);
+    this.focusNode, this.function,this.maxLines,this.controller,
+    this.functionSaveForm,this.validator,this.initVal}) : super(key: key);
   final String? labelTxt;
   final TextInputType? inputType;
   final TextInputAction? inputAction;
@@ -15,6 +15,7 @@ class InputFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final int? maxLines;
   final TextEditingController? controller;
+  final String? initVal;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -34,6 +35,7 @@ class InputFormField extends StatelessWidget {
       controller: controller,
       onSaved: functionSaveForm,
       validator: validator,
+      initialValue: initVal,
     );
   }
 }

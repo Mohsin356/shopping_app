@@ -61,5 +61,17 @@ void addProduct(ProductModel product){
     _items.add(newProduct);
 }
 
+void updateProduct(String id,ProductModel updatedProduct){
+    final productIndex=_items.indexWhere((element) => element.id==id);
+    if(productIndex>=0){
+      _items[productIndex]=updatedProduct;
+    }
+    else{
+      print('No product');
+    }
+}
+deleteProduct(String id){
+    _items.removeWhere((element) =>element.id==id);
+}
 
 }

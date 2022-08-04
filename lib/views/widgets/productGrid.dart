@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/controllers/productController.dart';
+import 'package:shopping_app/utils/colors.dart';
 import 'package:shopping_app/views/widgets/productItem.dart';
 class ProductGrid extends StatelessWidget {
   const ProductGrid({Key? key}) : super(key: key);
@@ -10,7 +11,13 @@ class ProductGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final productItemController= Get.put(ProductController());
     final productListItem=productItemController.items;
-    return LayoutBuilder(builder: (context, constraints) {
+    return productListItem.isEmpty? const Padding(
+      padding: EdgeInsets.symmetric(vertical: 20),
+      child: Center(
+        child:  Text("No Products Added Yet!",style: TextStyle(fontSize: 20,color: AppColors.hintTxtClr)),
+      ),
+    ) :
+    LayoutBuilder(builder: (context, constraints) {
       return
         Container(
           decoration: BoxDecoration(

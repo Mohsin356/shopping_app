@@ -23,10 +23,35 @@ class _EditProductState extends State<EditProduct> {
   final _imageUrlController= TextEditingController();
   final _formKey =GlobalKey<FormState>();
   var _editedProduct= ProductModel(id: null,title: '',price: 0.0,desc: '',imgUrl: '');
+  var _isInit=true;
+  var _initValues={
+    'title':'',
+    'description':'',
+    'price':'',
+    'imageUrl':'',
+  };
   @override
   initState(){
     _imageUrlFocusNode.addListener(_updateImageUrl);
     super.initState();
+}
+  @override
+  didChangeDependencies(){
+    if(_isInit){
+      final productId= Get.arguments;
+      if(productId != null){
+        _editedProduct=productController.findItemById(productId);
+        _initValues={
+          'title':_editedProduct.title!,
+          'description':_editedProduct.desc!,
+          'price':_editedProduct.price.toString(),
+          'imageUrl':'',
+        };
+        _imageUrlController.text=_editedProduct.imgUrl!;
+      }
+    }
+    _isInit=false;
+    super.didChangeDependencies();
 }
   @override
   void dispose(){
@@ -48,7 +73,12 @@ class _EditProductState extends State<EditProduct> {
       return ;
     }
     _formKey.currentState!.save();
-    productController.addProduct(_editedProduct);
+    if(_editedProduct.id!=null){
+      productController.updateProduct(_editedProduct.id!, _editedProduct);
+    }
+    else{
+      productController.addProduct(_editedProduct);
+    }
     Navigator.pop(context);
   }
   @override
@@ -80,7 +110,9 @@ class _EditProductState extends State<EditProduct> {
           key: _formKey,
           child: ListView(
             children: [
-              InputFormField(labelTxt: 'Title',
+              InputFormField(
+                initVal: _initValues['title'],
+                labelTxt: 'Title',
               inputType: TextInputType.text,
               inputAction: TextInputAction.next,
                 function: (_){
@@ -94,14 +126,16 @@ class _EditProductState extends State<EditProduct> {
                 return null;
                 },
                 functionSaveForm:(value){
-                _editedProduct=ProductModel(id: null,
+                _editedProduct=ProductModel(id: _editedProduct.id,
                 title: value,
                 price: _editedProduct.price,
                 desc: _editedProduct.desc,
-                imgUrl: _editedProduct.imgUrl);
+                imgUrl: _editedProduct.imgUrl,
+                quantity: 0.obs);
                 },
               ),
               InputFormField(
+                initVal: _initValues['price'],
                 labelTxt: 'Price',
                 inputAction: TextInputAction.next,
                 inputType: TextInputType.number,
@@ -123,14 +157,16 @@ class _EditProductState extends State<EditProduct> {
                   return null;
                 },
                 functionSaveForm:(value){
-                  _editedProduct=ProductModel(id: null,
+                  _editedProduct=ProductModel(id: _editedProduct.id,
                       title: _editedProduct.title,
                       price: double.parse(value!),
                       desc: _editedProduct.desc,
-                      imgUrl: _editedProduct.imgUrl);
+                      imgUrl: _editedProduct.imgUrl,
+                      quantity: 0.obs);
                 },
               ),
               InputFormField(
+                initVal: _initValues['description'],
                 labelTxt: "Description",
                 maxLines: 3,
                 focusNode: _detailFocusNode,
@@ -145,11 +181,12 @@ class _EditProductState extends State<EditProduct> {
                   return null;
                 },
                 functionSaveForm:(value){
-                  _editedProduct=ProductModel(id: null,
+                  _editedProduct=ProductModel(id: _editedProduct.id,
                       title: _editedProduct.title,
                       price: _editedProduct.price,
                       desc: value,
-                      imgUrl: _editedProduct.imgUrl);
+                      imgUrl: _editedProduct.imgUrl,
+                      quantity: 0.obs);
                 },
               ),
               Row(
@@ -188,11 +225,12 @@ class _EditProductState extends State<EditProduct> {
                           return null;
                         },
                         functionSaveForm:(value){
-                          _editedProduct=ProductModel(id: null,
+                          _editedProduct=ProductModel(id: _editedProduct.id,
                               title: _editedProduct.title,
                               price: _editedProduct.price,
                               desc: _editedProduct.desc,
-                              imgUrl: value);
+                              imgUrl: value,
+                              quantity: 0.obs);
                         },
                       ))
                 ],

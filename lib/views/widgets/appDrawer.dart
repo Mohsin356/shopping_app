@@ -45,7 +45,7 @@ class AppDrawer extends StatelessWidget {
                 color: AppColors.iconClr),
             title: const Text("Manage Products"),
             onTap: (){
-              Get.to(AdminProducts());
+              Get.to(()=>AdminProducts());
             },
           ),
         ],

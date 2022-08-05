@@ -30,6 +30,7 @@ class _EditProductState extends State<EditProduct> {
     'price':'',
     'imageUrl':'',
   };
+  var _isLoading=false;
   @override
   initState(){
     _imageUrlFocusNode.addListener(_updateImageUrl);
@@ -73,13 +74,24 @@ class _EditProductState extends State<EditProduct> {
       return ;
     }
     _formKey.currentState!.save();
+    setState((){
+      _isLoading=true;
+    });
     if(_editedProduct.id!=null){
       productController.updateProduct(_editedProduct.id!, _editedProduct);
+      setState((){
+        _isLoading=false;
+      });
+      Navigator.pop(context);
     }
     else{
-      productController.addProduct(_editedProduct);
+      productController.addProduct(_editedProduct).then((_)
+      {
+        setState((){
+          _isLoading=false;
+        });
+        Navigator.pop(context);} );
     }
-    Navigator.pop(context);
   }
   @override
   Widget build(BuildContext context) {
@@ -104,7 +116,13 @@ class _EditProductState extends State<EditProduct> {
           IconButton(onPressed: _saveForm, icon: const Icon(Icons.save,color: AppColors.iconClr,)),
         ],
       ),
-      body: Padding(
+      body: _isLoading?
+          const Center(
+            child: CircularProgressIndicator(
+              color: AppColors.circularProgressClr,
+            ),
+          )
+          :Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,

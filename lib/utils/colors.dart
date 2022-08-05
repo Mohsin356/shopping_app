@@ -24,5 +24,6 @@ class AppColors{
   static const btnClr=Colors.black;
   static const btnTxtClr=Color(0xFFf9f9f9);
   static const boxBorderClr=Colors.black;
+  static const circularProgressClr=Colors.black;
 
 }

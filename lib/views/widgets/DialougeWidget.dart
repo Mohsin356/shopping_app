@@ -22,7 +22,6 @@ class DialougeWidget extends StatelessWidget {
            child: Row(
              mainAxisAlignment: MainAxisAlignment.end,
              children: [
-
                GestureDetector(
                  onTap: confirmed,
                  child: const Text('Yes',style: TextStyle(color: AppColors.txtClr),),

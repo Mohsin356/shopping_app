@@ -1,6 +1,9 @@
 
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:shopping_app/models/productModel.dart';
+import 'package:http/http.dart' as http;
+import 'package:shopping_app/utils/urls.dart';
 
 class ProductController extends GetxController{
   var isChecked=false.obs;
@@ -50,15 +53,27 @@ class ProductController extends GetxController{
   findItemById(String? id){
     return _items.firstWhere((element) => element.id==id);
   }
-void addProduct(ProductModel product){
-    final newProduct=ProductModel(
-      id: DateTime.now().toString(),
-      title: product.title,
-      quantity: 0.obs,
-      desc: product.desc,
-      price: product.price,
-      imgUrl:product.imgUrl );
-    _items.add(newProduct);
+Future<void> addProduct(ProductModel product)async{
+    try{
+      final response = await http.post(Uri.parse(Url.productUrl),body: json.encode({
+        'id':product.id,
+        'title':product.title,
+        'desc':product.desc,
+        'price':product.price,
+        'imgUrl':product.imgUrl
+      }));
+      final newProduct=ProductModel(
+          id: json.decode(response.body)['name'],
+          title: product.title,
+          quantity: 0.obs,
+          desc: product.desc,
+          price: product.price,
+          imgUrl:product.imgUrl );
+      _items.add(newProduct);
+    }
+    catch(error){
+      print(error);
+    }
 }
 
 void updateProduct(String id,ProductModel updatedProduct){

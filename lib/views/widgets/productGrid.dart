@@ -9,9 +9,12 @@ class ProductGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productItemController= Get.put(ProductController());
+    final productItemController= Get.find<ProductController>();
     final productListItem=productItemController.items;
-    return productListItem.isEmpty? const Padding(
+    return Obx(() => productItemController.isDataLoading.value ?
+    const CircularProgressIndicator(
+      color: AppColors.circularProgressClr,
+    ):productListItem.isEmpty? const Padding(
       padding: EdgeInsets.symmetric(vertical: 20),
       child: Center(
         child:  Text("No Products Added Yet!",style: TextStyle(fontSize: 20,color: AppColors.hintTxtClr)),
@@ -45,6 +48,6 @@ class ProductGrid extends StatelessWidget {
                   );
               }),
         );
-    });
+    }));
   }
 }

@@ -34,7 +34,6 @@ Future<void>fetchProducts()async{
           ));
         });
         _items.value=loadedList;
-        print(_items);
       }
       else{
         print("No data");

@@ -29,7 +29,7 @@ Future<void>fetchProducts()async{
             quantity: 0.obs,
             title: productData['title'],
             desc: productData['desc'],
-            price: productData['price'],
+            price: productData['price'].toDouble(),
             imgUrl: productData['imgUrl'],
           ));
         });

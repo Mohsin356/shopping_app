@@ -10,6 +10,7 @@ import 'package:shopping_app/views/widgets/appDrawer.dart';
 class AdminProducts extends StatelessWidget {
    AdminProducts({Key? key}) : super(key: key);
   final productController=Get.find<ProductController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,8 @@ class AdminProducts extends StatelessWidget {
       drawer: const AppDrawer(),
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.appBgClr,
-      body: Obx(() => productController.items.isEmpty?
+      body: Obx(() =>
+      productController.items.isEmpty?
       const Padding(
         padding: EdgeInsets.symmetric(vertical: 20),
         child: Center(

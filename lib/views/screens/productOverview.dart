@@ -10,7 +10,7 @@ import 'package:shopping_app/views/widgets/appDrawer.dart';
 import 'package:shopping_app/views/widgets/headingText.dart';
 import 'package:shopping_app/views/widgets/productGrid.dart';
 class ProductOverview extends StatefulWidget {
-  ProductOverview({Key? key}) : super(key: key);
+  const ProductOverview({Key? key}) : super(key: key);
 
   @override
   State<ProductOverview> createState() => _ProductOverviewState();

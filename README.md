@@ -10,6 +10,8 @@ In this app, User can:
   6. Add count for the items user wants to buy.
   7. Remove item from the cart.
   8. View the to total bill for the items he has added in cart.
+  9. View the list of the orders user has made in such order that recent one is on top.
+  
 
 This chart feature allows its users to find out on which day expenses have been made in
 a large amount.

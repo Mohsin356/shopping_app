@@ -12,10 +12,6 @@ In this app, User can:
   8. View the to total bill for the items he has added in cart.
   9. View the list of the orders user has made in such order that recent one is on top.
   
-For Admin he can:
-  1. Add new Product.
-  2. Delete or update any product.
-  3. View the orders made by users.
 
 This chart feature allows its users to find out on which day expenses have been made in
 a large amount.

@@ -4,21 +4,47 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/productController.dart';
 import 'package:shopping_app/utils/colors.dart';
 import 'package:shopping_app/views/widgets/productItem.dart';
-class ProductGrid extends StatelessWidget {
+class ProductGrid extends StatefulWidget {
   const ProductGrid({Key? key}) : super(key: key);
 
   @override
+  State<ProductGrid> createState() => _ProductGridState();
+}
+
+class _ProductGridState extends State<ProductGrid> {
+  final productItemController= Get.put(ProductController());
+
+  var _isInit=true;
+
+  @override
+  didChangeDependencies(){
+    if(_isInit){
+     setState((){
+       productItemController.isDataLoading(true);
+     });
+     productItemController.fetchProducts().then((value) {
+       setState((){
+         productItemController.isDataLoading(false);
+       });
+     } );
+    }
+    _isInit=false;
+    super.didChangeDependencies();
+  }
+  @override
   Widget build(BuildContext context) {
-    final productItemController= Get.find<ProductController>();
     final productListItem=productItemController.items;
-    return Obx(() => productItemController.isDataLoading.value ?
+    return productListItem.isEmpty?
+        Column(
+         crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text("No products added yet",style: TextStyle(color: AppColors.hintTxtClr,fontSize: 20),),
+          ],
+        )
+        :productItemController.isDataLoading.value ?
     const CircularProgressIndicator(
       color: AppColors.circularProgressClr,
-    ):productListItem.isEmpty? const Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      child: Center(
-        child:  Text("No Products Added Yet!",style: TextStyle(fontSize: 20,color: AppColors.hintTxtClr)),
-      ),
     ) :
     LayoutBuilder(builder: (context, constraints) {
       return
@@ -48,6 +74,6 @@ class ProductGrid extends StatelessWidget {
                   );
               }),
         );
-    }));
+    });
   }
 }

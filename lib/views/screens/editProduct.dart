@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/controllers/productController.dart';
@@ -68,8 +67,9 @@ class _EditProductState extends State<EditProduct> {
       setState(() {});
     }
   }
-  void _saveForm(){
+  Future<void> _saveForm()async{
     final isValid=_formKey.currentState!.validate();
+    final navigator= Navigator.of(context);
     if(!isValid){
       return ;
     }
@@ -77,21 +77,36 @@ class _EditProductState extends State<EditProduct> {
     setState((){
       _isLoading=true;
     });
-    if(_editedProduct.id!=null){
-      productController.updateProduct(_editedProduct.id!, _editedProduct);
-      setState((){
-        _isLoading=false;
-      });
-      Navigator.pop(context);
+     if(_editedProduct.id!=null){
+       await productController.updateProduct(_editedProduct.id!, _editedProduct);
     }
     else{
-      productController.addProduct(_editedProduct).then((_)
-      {
-        setState((){
-          _isLoading=false;
-        });
-        Navigator.pop(context);} );
+      try{
+        await productController.addProduct(_editedProduct);
+      }
+      catch (error) {
+        await showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text('An error occurred!'),
+            content: const Text('Something went wrong.'),
+            actions: <Widget>[
+              ElevatedButton(
+                child: const Text('Okay'),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+              )
+            ],
+          ),
+        );
+      }
     }
+    setState(() {
+      _isLoading = false;
+    });
+    navigator.pop();
+
   }
   @override
   Widget build(BuildContext context) {
@@ -150,6 +165,7 @@ class _EditProductState extends State<EditProduct> {
                 desc: _editedProduct.desc,
                 imgUrl: _editedProduct.imgUrl,
                 quantity: 0.obs);
+                return null;
                 },
               ),
               InputFormField(
@@ -181,6 +197,7 @@ class _EditProductState extends State<EditProduct> {
                       desc: _editedProduct.desc,
                       imgUrl: _editedProduct.imgUrl,
                       quantity: 0.obs);
+                  return null;
                 },
               ),
               InputFormField(
@@ -205,6 +222,7 @@ class _EditProductState extends State<EditProduct> {
                       desc: value,
                       imgUrl: _editedProduct.imgUrl,
                       quantity: 0.obs);
+                  return null;
                 },
               ),
               Row(
@@ -249,6 +267,7 @@ class _EditProductState extends State<EditProduct> {
                               desc: _editedProduct.desc,
                               imgUrl: value,
                               quantity: 0.obs);
+                          return null;
                         },
                       ))
                 ],

@@ -25,7 +25,7 @@ class AppDrawer extends StatelessWidget {
               color: AppColors.iconClr,),
               title: const Text("Shop"),
             onTap: (){
-              Get.to(ProductOverview());
+              Get.to(()=>ProductOverview());
             },
             ),
           const Divider(),
@@ -35,7 +35,7 @@ class AppDrawer extends StatelessWidget {
                 color: AppColors.iconClr),
               title: const Text("Orders"),
             onTap: (){
-              Get.to(OrdersScreen());
+              Get.to(()=>OrdersScreen());
             },
             ),
           const Divider(),

@@ -19,6 +19,8 @@ class AppColors{
   static const toastBg = Colors.black38;
   static const gridTileTitleClr = Colors.white;
   static const iconClr=Colors.black;
+  static const delIconClr=Colors.red;
+  static const editIconClr=Colors.green;
   static const checkBoxClr=Colors.black;
   static const checkedBoxClr=Color(0xFFf9f9f9);
   static const btnClr=Colors.black;

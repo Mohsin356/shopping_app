@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/utils/colors.dart';
 
-class DialougeWidget extends StatelessWidget {
-  const DialougeWidget({Key? key,this.titleTxt,this.contentTxt,this.contextTxtClr,this.confirmed,this.notConfirmed}) : super(key: key);
+class DialogueWidget extends StatelessWidget {
+  const DialogueWidget({Key? key,this.titleTxt,this.contentTxt,this.contextTxtClr,this.confirmed,this.notConfirmed}) : super(key: key);
   final String? titleTxt;
   final String? contentTxt;
   final Color? contextTxtClr;

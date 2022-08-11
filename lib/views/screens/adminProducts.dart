@@ -11,8 +11,10 @@ class AdminProducts extends StatelessWidget {
    AdminProducts({Key? key}) : super(key: key);
   final productController=Get.find<ProductController>();
 
+
   @override
   Widget build(BuildContext context) {
+    final scaffold=ScaffoldMessenger.of(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -47,7 +49,16 @@ class AdminProducts extends StatelessWidget {
                 id: productController.items[index].id,
                 imgUrl: productController.items[index].imgUrl,
                 itemTitle: productController.items[index].title,
-                deleteProd: ()=>productController.deleteProduct(productController.items[index].id!),),
+                deleteProd: ()async{
+                  try{
+                    await productController.deleteProduct(productController.items[index].id!);
+                  }
+                  catch(error){
+                    scaffold.showSnackBar(
+                       const SnackBar(content: Text('Deleting Failed',textAlign: TextAlign.center,) )
+                    );
+                  }
+                }),
               const Divider(),
             ],
           ),

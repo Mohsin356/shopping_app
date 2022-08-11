@@ -4,11 +4,8 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/cartController.dart';
 import 'package:shopping_app/controllers/orderController.dart';
 import 'package:shopping_app/utils/colors.dart';
-import 'package:shopping_app/views/widgets/DialougeWidget.dart';
-import 'package:shopping_app/views/widgets/buttonWidget.dart';
-import 'package:shopping_app/views/widgets/quantityCountWidget.dart';
-
-import '../screens/ordersScreen.dart';
+import 'package:shopping_app/views/screens/ordersScreen.dart';
+import 'package:shopping_app/views/widgets/dialogueWidget.dart';
 
 class CartItemList extends StatelessWidget {
   CartItemList({Key? key,}) : super(key: key);
@@ -46,7 +43,7 @@ class CartItemList extends StatelessWidget {
                   trailing: Padding(
                     padding: const EdgeInsets.only(left: 10.0,right: 0.0),
                     child: IconButton(onPressed: (){
-                      showDialog(context: context, builder: (context)=>DialougeWidget(
+                      showDialog(context: context, builder: (context)=>DialogueWidget(
                         titleTxt: "Are you Sure?",
                         contentTxt: "Are you sure to remove ${cartItemController.cartItems.values.toList()[index].title} from cart?",
                         confirmed: (){
@@ -59,26 +56,56 @@ class CartItemList extends StatelessWidget {
                       ));
                     },icon: const Icon(Icons.delete,color: AppColors.iconClr,),),
                   ),
-
-
                 );
               }),
           const SizedBox(height: 15,),
            Text("Total: ${cartItemController.totalPrice.toStringAsFixed(2)}",style: const TextStyle(fontSize: 20),),
           const SizedBox(height: 15,),
-          ButtonWidget(btnTxt: "Place Order",
-            btnTxtClr: AppColors.btnTxtClr,btnClr: AppColors.btnClr,
-            function:
-            cartItemController.totalPrice==0.0 ?null:
-                (){
-              orderController.addOrder(cartItemController.cartItems.values.toList(), cartItemController.totalPrice.toStringAsFixed(2));
-              cartItemController.clearItems();
-              cartItemController.update();
-              Get.to(OrdersScreen());
-            },),
+          OrderButton(cartItemController: cartItemController, orderController: orderController),
         ],
       ),
 
     ));
+  }
+}
+
+class OrderButton extends StatefulWidget {
+  const OrderButton({
+    Key? key,
+    required this.cartItemController,
+    required this.orderController,
+  }) : super(key: key);
+
+  final CartController cartItemController;
+  final OrderController orderController;
+
+  @override
+  State<OrderButton> createState() => _OrderButtonState();
+}
+
+class _OrderButtonState extends State<OrderButton> {
+  var _isLoading=false;
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => ElevatedButton(
+      style:ElevatedButton.styleFrom(
+        primary:AppColors.btnClr,onPrimary: AppColors.btnTxtClr,
+        minimumSize: const Size.fromHeight(50),
+      ),
+      onPressed:(widget.cartItemController.totalPrice==0.0 || _isLoading)?null:
+          ()async{
+        setState((){
+          _isLoading=true;
+        });
+        await widget.orderController.addOrder(widget.cartItemController.cartItems.values.toList(),
+            widget.cartItemController.totalPrice.toStringAsFixed(2));
+        setState((){
+          _isLoading=false;
+        });
+        widget.cartItemController.clearItems();
+        Get.to(()=>OrdersScreen());
+      },
+      child: _isLoading? const CircularProgressIndicator(color: AppColors.circularProgressClr,):
+      const  Text("Place Order"),));
   }
 }

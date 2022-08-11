@@ -39,7 +39,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
                     color: AppColors.iconBadgeClr,
 
                   ),
-                  child: Center(child: Text('${cartController.itemsCount}',style: const TextStyle(fontSize: 12),)),
+                  child: Center(child: Text('${cartController.itemsCount.value}',style: const TextStyle(fontSize: 12),)),
                 )
             ),
 

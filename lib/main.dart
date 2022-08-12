@@ -1,7 +1,7 @@
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/views/screens/authScreen.dart';
+// import 'package:shopping_app/views/screens/authScreen.dart';
 import 'package:shopping_app/views/screens/productOverview.dart';
 
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
       ),
-      home:const AuthScreen(),
+      home: ProductOverview(),
 
       // onReady:()=> Get.find<AuthController>().isAuth? ProductOverview():const AuthScreen(),
     );

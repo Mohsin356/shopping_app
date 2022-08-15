@@ -18,6 +18,4 @@ a large amount.
 
 
 ## Demo of Project
-
-
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/101866366/177814329-dd70829a-8527-40c5-96eb-8ede0f8622a6.gif)
+![Samsung Galaxy Note 10+ Presentation (1)](https://user-images.githubusercontent.com/101866366/184643720-4de45d1a-0b79-4aee-8a05-42353f40b0c7.jpg)

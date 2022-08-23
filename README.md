@@ -18,4 +18,7 @@ a large amount.
 
 
 ## Demo of Project
-![Samsung Galaxy Note 10+ Presentation (1)](https://user-images.githubusercontent.com/101866366/184643720-4de45d1a-0b79-4aee-8a05-42353f40b0c7.jpg)
+
+![Google Pixel 4 XL Presentation](https://user-images.githubusercontent.com/101866366/186094771-ceb848be-f6dc-4069-9b94-0981bf4758d6.png)
+![Google Pixel 4 XL Presentation (1)](https://user-images.githubusercontent.com/101866366/186094794-7fabcd5e-b81d-4b2a-a95e-9b50b7108db9.png)
+![Google Pixel 4 XL Presentation (2)](https://user-images.githubusercontent.com/101866366/186094805-53e05a67-f11b-450b-b4ab-b8da6a92abee.png)
